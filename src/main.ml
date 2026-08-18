@@ -9,6 +9,7 @@ let () =
   setsockopt server_socket SO_REUSEADDR true;
   bind server_socket (ADDR_INET (inet_addr_of_string "127.0.0.1", 4221));
   listen server_socket 1;
+  (*test comment*)
 
   (* TODO: Uncomment the code below to pass the first stage *)
   let (client_socket, _) = accept server_socket in
