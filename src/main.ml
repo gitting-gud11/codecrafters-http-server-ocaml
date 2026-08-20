@@ -15,7 +15,7 @@ type http_request_line = {
 
 type http_request = {
   request_line : http_request_line;
-  headers : (string * string) list; (*Consider modifying to an array, or a map*)
+  headers : (string * string) array;
   request_body : string;
 }
 
@@ -52,7 +52,7 @@ let parse_http_headers headers_segment =
         (fun (name, value) -> (name, String.trim value ^ crlf))
         built_header_list
     in
-    Some formatted_header_list
+    Some (Array.of_list formatted_header_list)
 
 let parse_http_request client_message =
   let* client_request_line, suffix =
